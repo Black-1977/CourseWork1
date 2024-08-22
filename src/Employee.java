@@ -6,9 +6,9 @@ public class Employee {
     private double salary;
     private int department;
 
-    public Employee(String name, double salary, int department) {
+    public Employee(String name, double salary, int department, int id) {
         this.name = name;
-        this.id = 0;
+        this.id = id;
         this.salary = salary;
         this.department = department;
     }

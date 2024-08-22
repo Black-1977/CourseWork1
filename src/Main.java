@@ -1,19 +1,20 @@
 public class Main {
     public static void main(String[] args) {
-        Employee man1 = new Employee("Иванов Сергей", 55000, 1),
-                man2 = new Employee("Петров Дмитрий", 83000, 1),
-                man3 = new Employee("Кузнецов Олег", 28000, 3);
+        int currentId = 0;
+        Employee man1 = new Employee("Иванов Сергей", 55000, 1, ++currentId),
+                man2 = new Employee("Петров Дмитрий", 83000, 1, ++currentId),
+                man3 = new Employee("Кузнецов Олег", 28000, 3, ++currentId);
         EmployeeBook book = new EmployeeBook();
-        if (book.addEmployee(man1)) {
+        if (!book.addEmployee(man1)) {
             System.out.println("Нет квот.");
         }
-        if (book.addEmployee(man2)) {
+        if (!book.addEmployee(man2)) {
             System.out.println("Нет квот.");
         }
-        if (!book.addEmployee("Дмитриев Алексей", 65000, 2)) {
+        if (!book.addEmployee("Дмитриев Алексей", 65000, 2, ++currentId)) {
             System.out.println("Нет квот.");
         }
-        if (book.addEmployee(man3)) {
+        if (!book.addEmployee(man3)) {
             System.out.println("Нет квот.");
         }
         System.out.println(book);
@@ -40,10 +41,10 @@ public class Main {
         book.namesOfEmployeesOfDepartment(dept);
 
 
-        if (!book.removeEmployee(2)) {
-            System.out.println("Нет такого сотрудника.");
+        if (!book.removeEmployee(3)) {
+            System.out.println("Нет сотрудника для удаления");
+        } else {
+            System.out.println("Компания после удаления сотрудника:\n" + book);
         }
-        System.out.println("Компания после удаления сотрудника:\n" + book);
-
     }
 }

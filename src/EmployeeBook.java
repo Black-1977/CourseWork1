@@ -1,10 +1,8 @@
 public class EmployeeBook {
     private final Employee[] employeeBook;
-    private int currentUserID;
 
     public EmployeeBook() {
         this.employeeBook = new Employee[10];
-        this.currentUserID = 0;
     }
 
     // Добавление сотрудника
@@ -12,20 +10,16 @@ public class EmployeeBook {
         for (int i = 0; i < employeeBook.length - 1; i++) {
             if (employeeBook[i] == null) {
                 employeeBook[i] = employee;
-                currentUserID++;
-                employeeBook[i].setId(currentUserID);
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
-    public boolean addEmployee(String name, double salary, int department) {
+    public boolean addEmployee(String name, double salary, int department, int id) {
         for (int i = 0; i < employeeBook.length - 1; i++) {
             if (employeeBook[i] == null) {
-                employeeBook[i] = new Employee(name, salary, department);
-                currentUserID++;
-                employeeBook[i].setId(currentUserID);
+                employeeBook[i] = new Employee(name, salary, department, id);
                 return true;
             }
         }
@@ -35,7 +29,7 @@ public class EmployeeBook {
     // Удаление сотрудника
     public boolean removeEmployee(int id) {
         for (int i = 0; i < employeeBook.length - 1; i++) {
-            if (employeeBook[i].getId() == id) {
+            if (employeeBook[i] != null && employeeBook[i].getId() == id) {
                 employeeBook[i] = null;
                 return true;
             }
@@ -47,7 +41,7 @@ public class EmployeeBook {
     public String getEmployee(int id) {
         String str = "";
         for (int i = 0; i < employeeBook.length - 1; i++) {
-            if (employeeBook[i].getId() == id) {
+            if (employeeBook[i] != null && employeeBook[i].getId() == id) {
                 str = employeeBook[i].toString();
             }
         }
